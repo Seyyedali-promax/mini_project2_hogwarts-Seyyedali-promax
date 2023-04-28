@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HogwartsProjects_hoseynzadeh
-{
+{jkjk
     class Plants
     {   
         int BlueFlower = 50;
