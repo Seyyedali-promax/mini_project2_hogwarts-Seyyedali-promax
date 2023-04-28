@@ -18,6 +18,66 @@ namespace HogwartsProjects_hoseynzadeh
         }
         public Plants PlantsProccess(Plants x)
         {
+            Console.WriteLine($"Your plants are:\n(1) Blue: {1}\n(2) Gray: {2}\n(1) Red: {3}\n(1) Yellow: {4}\n(1) Green: {5}\n(1) Pink: {6}\n(1) Sunflower: {7}",x.BlueFlower,x.GrayFlower,x.RedFlower,x.YellowFlower,x.GreenFlower,x.PinkFlower,x.SunFlower);
+            string Chooseflower;
+            int ChooseflowerInt = 0;
+            while (1 == 1)
+            {
+                Console.WriteLine("Choose number of one of them for increasing its number:");
+                Chooseflower = (Console.ReadLine());
+                try
+                {
+                    ChooseflowerInt = Convert.ToInt32(Chooseflower);
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                if (ChooseflowerInt > 7 || ChooseflowerInt < 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a valid number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                break;
+            }
+            string HowmuchIncrease;
+            int HowmuchIncreaseInt = 0;
+            while (1 == 1)
+            {
+                Console.WriteLine("Choose number of one of them for increasing its number:");
+                HowmuchIncrease = (Console.ReadLine());
+                try
+                {
+                    HowmuchIncreaseInt = Convert.ToInt32(HowmuchIncrease);
+                }
+                catch
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                if (HowmuchIncreaseInt < 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a valid number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                break;
+            }
+            switch (ChooseflowerInt)
+            {
+                case 1 :
+                    x.BlueFlower += HowmuchIncreaseInt;
+                    break;
+                    
+            }
             return x;
         }
     }
