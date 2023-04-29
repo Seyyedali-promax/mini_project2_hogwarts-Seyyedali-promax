@@ -9,9 +9,11 @@ namespace HogwartsProjects_hoseynzadeh
     class Student : AuthorizedHuman
     {
         // His Information
-        public string[] PassedCourses = { };
+        public string[] PassedCourses = new string[1000];
+        public string[] TermCourses = new string[1000];
         public int term = 1;
-        public int DormNumber = -1;
+        public int PassedCoursesNumber = 0;
+        public string[] TeachersOfStudent = new string[1000];
         // His Plants
         public int BlueFlower = 0;
         public int GrayFlower = 0;
@@ -57,7 +59,7 @@ namespace HogwartsProjects_hoseynzadeh
             int ChooseProcessInt = 0;
             while (1 == 1)
             {
-                Console.WriteLine("What do you want? :\n(1) I want do my personal works.\n(2) I want communicate with Dombledour.\n(3) I want Picking the plants.\n(4) I want choose my lessons\n (5) Exit\n--------------------");
+                Console.WriteLine("--------------------\nWhat do you want? :\n(1) I want do my personal works.\n(2) I want communicate with Dombledour.\n(3) I want Picking the plants.\n(4) I want choose my lessons\n (5) Exit\n--------------------");
                 ChooseProcess = (Console.ReadLine());
                 try
                 {
@@ -84,9 +86,57 @@ namespace HogwartsProjects_hoseynzadeh
             return ChooseProcessInt;
         }
         // Proccess related to classes
-        public Student StudentProccess(Student x)
+        public Student StudentProccess(Student x,Teacher[] Teachers)
         {
+            string ChooseLesson;
+            int ChooseLessonInt = 0;
+            while (1 == 1)
+            {
+                Console.WriteLine("--------------------\nWhat you want learn?\n(1) Sport \n(2) Chimistry \n(3) Magicology \n(4) Phyology\n--------------------");
+                ChooseLesson = (Console.ReadLine());
+                try
+                {
+                    ChooseLessonInt = Convert.ToInt32(ChooseLesson);
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                if (ChooseLessonInt > /*Important when adding option*/  4 || ChooseLessonInt < 1)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a valid number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                break;
+            }
+            switch (ChooseLessonInt)
+            {
+                case 1:
+                    x.TeachingLesson = "Sport";
+                    x.LessonsSchedule[ChooseDateInt] = "Sport";
+                    break;
+                case 2:
+                    x.TeachingLesson = "Chimistry";
+                    x.LessonsSchedule[ChooseDateInt] = "Chimistry";
+                    break;
+                case 3:
+                    x.TeachingLesson = "Magicology";
+                    x.LessonsSchedule[ChooseDateInt] = "Magicology";
+                    break;
+                case 4:
+                    x.TeachingLesson = "Phytology";
+                    x.LessonsSchedule[ChooseDateInt] = "Phytology";
+                    break;
+            }
             return x;
+
         }
         public Dombledour ManagerProccess(Dombledour x)
         {

@@ -8,11 +8,11 @@ namespace HogwartsProjects_hoseynzadeh
 {
     class Lesson
     {
-        int TimeOfLesson = 2;
-        int NumberOfStudents = 0;
-        int Capacity = 100000;
-        //int TermOfzpresent;
-        //string Name;
+        public int TimeOfLesson = 0;
+        public string Name;
+      //public int NumberOfStudents = 0;
+      //public int Capacity = 100000;
+      //public int TermOfzpresent;
         
     }
 }

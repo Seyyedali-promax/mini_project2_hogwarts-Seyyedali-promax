@@ -16,6 +16,7 @@ namespace HogwartsProjects_hoseynzadeh
         {
             return x;
         }
+        //Plant
         public Plants PlantsProccess(Plants x)
         {
             Console.WriteLine($"Your plants are:\n(1) Blue: {1}\n(2) Gray: {2}\n(1) Red: {3}\n(1) Yellow: {4}\n(1) Green: {5}\n(1) Pink: {6}\n(1) Sunflower: {7}",x.BlueFlower,x.GrayFlower,x.RedFlower,x.YellowFlower,x.GreenFlower,x.PinkFlower,x.SunFlower);
@@ -76,7 +77,24 @@ namespace HogwartsProjects_hoseynzadeh
                 case 1 :
                     x.BlueFlower += HowmuchIncreaseInt;
                     break;
-                    
+                case 2:
+                    x.GrayFlower += HowmuchIncreaseInt;
+                    break;
+                case 3:
+                    x.RedFlower += HowmuchIncreaseInt;
+                    break;
+                case 4:
+                    x.YellowFlower += HowmuchIncreaseInt;
+                    break;
+                case 5:
+                    x.GreenFlower += HowmuchIncreaseInt;
+                    break;
+                case 6:
+                    x.PinkFlower += HowmuchIncreaseInt;
+                    break;
+                case 7:
+                    x.SunFlower += HowmuchIncreaseInt;
+                    break;
             }
             return x;
         }

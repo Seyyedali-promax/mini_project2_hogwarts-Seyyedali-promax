@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace HogwartsProjects_hoseynzadeh
 {
     class Plants
-    {   
-        int BlueFlower = 50;
-        int GrayFlower = 50;
-        int RedFlower = 50;
-        int YellowFlower = 50;
-        int GreenFlower = 50;
-        int PinkFlower = 50;
-        int SunFlower = 50;
+    {
+       public int BlueFlower =50;
+       public int GrayFlower = 50;
+       public int RedFlower = 50;
+       public int YellowFlower = 50;
+       public int GreenFlower = 50;
+       public int PinkFlower = 50;
+       public int SunFlower = 50;
     }
 }

@@ -11,47 +11,14 @@ namespace HogwartsProjects_hoseynzadeh
     {
         //Variables
         public int BedroomNumber = -1;
-        public string[][] LessonsSchedule;
+        public string[] LessonsSchedule = new string[5];
         public enum GroupType { Hufflepuff = 1, Gryffindor, Ravenclaw, Slytherin }
         public string GroupName;
-        public bool HaveBaggage = false;
+        public bool HaveBaggage = true;
         public enum Pet { Owl = 1, Cat, Rat }
         public enum Job { Teacher = 1, Student }
         public string[] Letters;
         //Methods
-        // Number of teachers and students in file
-        public int NumberOfStudentsInFile()
-        {
-            int Result = 0;
-            using (StreamReader File = new StreamReader("file.tsv"))
-            {
-                string ln;
-                while ((ln = File.ReadLine()) != null)
-                {
-                    string[] Human = ln.Split('\t').ToArray<string>();
-                    if (Human[8] == "student")
-                    { Result++; }
-                }
-                File.Close();
-            }
-            return Result;
-        }
-        public int NumberOfTeachersInFile()
-        {
-            int Result = 0;
-            using (StreamReader File = new StreamReader("file.tsv"))
-            {
-                string ln;
-                while ((ln = File.ReadLine()) != null)
-                {
-                    string[] Human = ln.Split('\t').ToArray<string>();
-                    if (Human[8] == "teacher")
-                    { Result++; }
-                }
-                File.Close();
-            }
-            return Result;
-        }
         // Choosing role
         public int ChooseRole()
         {
@@ -100,12 +67,16 @@ namespace HogwartsProjects_hoseynzadeh
             {
                 case 0:
                     return "Gryffindor";
+                    break;
                 case 1:
                     return "Ravenclaw";
+                    break;
                 case 2:
                     return "Hufflepuff";
+                    break; 
                 case 3:
                     return "Slytherin";
+                    break;
                 default:
                     return "Impossible!";
             }
