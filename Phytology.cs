@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HogwartsProjects_hoseynzadeh
+namespace Hogwartz_hoseynzadeh2
 {
-    class Phytology : Lesson
+    class Phytology
     {
-        string[] ListOfTerm1Plants;
-        string[] ListOfTerm2Plants;
-        string[] ListOfTerm3Plants;
-        string[] ListOfTerm4Plants;
     }
 }

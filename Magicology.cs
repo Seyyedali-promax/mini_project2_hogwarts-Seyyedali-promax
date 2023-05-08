@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HogwartsProjects_hoseynzadeh
+namespace Hogwartz_hoseynzadeh2
 {
-    class Magicology:Lesson
+    class Magicology
     {
-        string[] ListOfMagics;
     }
 }

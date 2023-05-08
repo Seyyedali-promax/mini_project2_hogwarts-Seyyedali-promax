@@ -4,23 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HogwartsProjects_hoseynzadeh
+namespace Hogwartz_hoseynzadeh2
 {
     class Human
     {
-        //Variables
-        public string Name;
-        public string Family;
-        public string NameOfFather;
-        public int Birthyear;
-        public bool IsHeMale;
-        public string Username;
-        public string Password;
-        public enum BloodEnum
-        {
-            Halfblood = 1, Pureblood, Muggleblood
-        }
-        public string Blood;
+        public string Name = " ";
+        public string Family = " ";
+        public string BirthYear = " ";
+        public string gender = " ";
+        public string FatherName = " ";
+        public string Username = " ";
+        public string Password = " ";
+        public string Race = " ";
+        public string Role = " ";
 
     }
 }

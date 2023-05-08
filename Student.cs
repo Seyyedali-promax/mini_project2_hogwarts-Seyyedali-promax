@@ -3,79 +3,103 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
-namespace HogwartsProjects_hoseynzadeh
+namespace Hogwartz_hoseynzadeh2
 {
-    class Student : AuthorizedHuman
+    class Student : AouthorizedHuman
     {
-        // His Information
-        public string[] PassedCourses = new string[1000];
-        public string[] TermCourses = new string[1000];
-        public int term = 1;
-        public int PassedCoursesNumber = 0;
-        public string[] TeachersOfStudent = new string[1000];
-        // His Plants
-        public int BlueFlower = 0;
-        public int GrayFlower = 0;
-        public int RedFlower = 0;
+        public string[] Actions = new string[6] { "Read my letters.", "Give a ticket.","Boarding the Train.","Choose my Courses.","Doing my homeworks.","Exit"};
+        public string[] PassedCourses = new string[4];
+        public int NumberOfTerm = 1;
+        public bool Ticket = false;
+        public bool IsHeInHogwartz = false;
+        public int BlueFlower =   0;
+        public int GrayFlower =   0;
+        public int RedFlower =    0;
         public int YellowFlower = 0;
-        public int GreenFlower = 0;
-        public int PinkFlower = 0;
-        public int SunFlower = 0;
-
-        // Methods
-
-        //Log in
-        public int Whichone(Student[] List, int Number)
+        public int GreenFlower =  0;
+        public int PinkFlower =   0;
+        public int SunFlower =    0;
+        public void LetterProcess(int Whichone)
         {
-            int Result = -1;
-            Console.WriteLine("What is your username?");
-            string InUsername = Console.ReadLine();
-            for (int i = 0; i < Number; i++)
+            string Request = "Enter";
+            if (Program.Students[Whichone].IsHeInHogwartz == true)
             {
-                if (List[i].Username == InUsername)
+                Request = "Exit";
+            }
+            string[] Choises = new string[2] { "Yes", "No" };
+            int Choise = Program.MyMethods.Choise(Choises, $"Do you want {Request} Hogwartz?");
+            if (Choise == 1)
+            {
+                Program.Dombledour.Letters.Add($"Hello Dombledour! i.m {Program.Students[Whichone].Name} {Program.Students[Whichone].Family}.\n I want {Request} Hogwartz.\n Please send me a ticket.");
+                Program.Dombledour.StudentOfDemands.Add(Whichone);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nYour request sent successfuly.");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+        // Log in
+        public int Login()
+        {
+            //UI
+            Console.Clear();
+            Console.WriteLine("Enter Your username:");
+            string InputUsername = Console.ReadLine();
+            Console.WriteLine("EnterYour Password:");
+            string InputPassword = Console.ReadLine();
+            //Background
+            int Result = -1;
+            bool ValidAcoount = false;
+            for (int i = 0; i < Program.StudentIndex; i++)
+            {
+                if (Program.Students[i].Username == InputUsername)
                 {
-                    Console.WriteLine("Enter your password:");
-                    string InPassword = Console.ReadLine();
-                    if (InPassword == List[i].Password)
+                    ValidAcoount = true;
+                    if (Program.Students[i].Password == InputPassword)
                     {
                         Result = i;
-                        return Result;
                     }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Password is incorrect.\n");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
+
                 }
             }
+            if (!ValidAcoount)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n\nInvalid Account! Try again.");
+            }
+            else if (Result == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n\nIncorrect password! Try again.");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
             return Result;
         }
-        // Choose Proccess
-        public int WhichProcess()
+        //Homework
+        public void HomeworkProcess (int StudentNumber)
         {
-            string ChooseProcess;
-            int ChooseProcessInt = 0;
+            Console.WriteLine($"Garden plants are:\n\n(1) Blue: {Program.Garden.BlueFlower} \n(2) Gray: {Program.Garden.GrayFlower} \n(3) Red: {Program.Garden.RedFlower} \n(4) Yellow: {Program.Garden.YellowFlower} \n(5) Green: {Program.Garden.GreenFlower} \n(6) Pink: {Program.Garden.PinkFlower} \n(7) Sunflower: {Program.Garden.SunFlower} ");
+
+            string Chooseflower;
+            int ChooseflowerInt = 0;
             while (1 == 1)
             {
-                Console.WriteLine("--------------------\nWhat do you want? :\n(1) I want do my personal works.\n(2) I want communicate with Dombledour.\n(3) I want Picking the plants.\n(4) I want choose my lessons\n (5) Exit\n--------------------");
-                ChooseProcess = (Console.ReadLine());
+                Console.WriteLine("--------------------\nChoose number of one of them for picking up");
+                Chooseflower = (Console.ReadLine());
                 try
                 {
-                    ChooseProcessInt = Convert.ToInt32(ChooseProcess);
+                    ChooseflowerInt = Convert.ToInt32(Chooseflower);
                 }
                 catch
                 {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error! Please enter a number.\n");
                     Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
-                if (ChooseProcessInt > /*Important when adding option*/  5 || ChooseProcessInt < 1)
+                if (ChooseflowerInt > 7 || ChooseflowerInt < 1)
                 {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error! Please enter a valid number.\n");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -83,32 +107,25 @@ namespace HogwartsProjects_hoseynzadeh
                 }
                 break;
             }
-            return ChooseProcessInt;
-        }
-        // Proccess related to classes
-        public Student StudentProccess(Student x,Teacher[] Teachers)
-        {
-            string ChooseLesson;
-            int ChooseLessonInt = 0;
+            string HowMuch;
+            int HowmuchInt = 0;
             while (1 == 1)
             {
-                Console.WriteLine("--------------------\nWhat you want learn?\n(1) Sport \n(2) Chimistry \n(3) Magicology \n(4) Phyology\n--------------------");
-                ChooseLesson = (Console.ReadLine());
+                Console.WriteLine("How much? :");
+                HowMuch = (Console.ReadLine());
                 try
                 {
-                    ChooseLessonInt = Convert.ToInt32(ChooseLesson);
+                    HowmuchInt = Convert.ToInt32(HowMuch);
                 }
                 catch
                 {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error! Please enter a number.\n");
                     Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
-                if (ChooseLessonInt > /*Important when adding option*/  4 || ChooseLessonInt < 1)
+                if (HowmuchInt < 0)
                 {
-                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Error! Please enter a valid number.\n");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -116,40 +133,34 @@ namespace HogwartsProjects_hoseynzadeh
                 }
                 break;
             }
-            switch (ChooseLessonInt)
+            switch (ChooseflowerInt)
             {
                 case 1:
-                    x.TeachingLesson = "Sport";
-                    x.LessonsSchedule[ChooseDateInt] = "Sport";
+                    Program.Students[StudentNumber].BlueFlower += HowmuchInt;
                     break;
                 case 2:
-                    x.TeachingLesson = "Chimistry";
-                    x.LessonsSchedule[ChooseDateInt] = "Chimistry";
+                    Program.Students[StudentNumber].GrayFlower += HowmuchInt;
                     break;
                 case 3:
-                    x.TeachingLesson = "Magicology";
-                    x.LessonsSchedule[ChooseDateInt] = "Magicology";
+                    Program.Students[StudentNumber].RedFlower += HowmuchInt;
                     break;
                 case 4:
-                    x.TeachingLesson = "Phytology";
-                    x.LessonsSchedule[ChooseDateInt] = "Phytology";
+                    Program.Students[StudentNumber].YellowFlower += HowmuchInt;
+                    break;
+                case 5:
+                    Program.Students[StudentNumber].GreenFlower += HowmuchInt;
+                    break;
+                case 6:
+                    Program.Students[StudentNumber].PinkFlower += HowmuchInt;
+                    break;
+                case 7:
+                    Program.Students[StudentNumber].SunFlower += HowmuchInt;
                     break;
             }
-            return x;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nThe plants picked up successfuly.");
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
-        public Dombledour ManagerProccess(Dombledour x)
-        {
-            return x;
-        }
-        public Plants PlantProcess(Plants x)
-        {
-            return x;
-        }
-        public Student HomeworkProcess(Plants x, Plants y, Student z)
-        {
-            return z;
-        }
-        // Determine dorm
     }
 }

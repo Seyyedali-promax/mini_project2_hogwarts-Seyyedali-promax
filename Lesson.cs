@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HogwartsProjects_hoseynzadeh
+namespace Hogwartz_hoseynzadeh2
 {
     class Lesson
     {
-        public int TimeOfLesson = 0;
+        // 0 to 4, saturday to wednesday
+        public int Whichday;
+        public int NumberOfClassmates  =0;
+        //public int Capacity;
         public string Name;
-      //public int NumberOfStudents = 0;
-      //public int Capacity = 100000;
-      //public int TermOfzpresent;
-        
+        public Teacher TeaacherOfCource = new Teacher();
     }
 }
