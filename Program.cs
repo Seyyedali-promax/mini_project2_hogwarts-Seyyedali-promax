@@ -58,7 +58,7 @@ namespace Hogwartz_hoseynzadeh2
                                 {
                                     case 1:
                                         Dombledour.LetterProcess();
-                                        MyMethods.DelayRerun(3);
+                                        //MyMethods.DelayRerun(3);
                                         break;
 
                                     case 2:
@@ -156,7 +156,7 @@ namespace Hogwartz_hoseynzadeh2
                                 }
                                 else
                                 {
-                                    Students[StudentLoginNumber].Actions = new string[6] { "Read my letters.", "Request a ticket.", "Boarding the Train.", "Exit", "Choose my Courses.", "Doing my phytology homeworks." };
+                                    Students[StudentLoginNumber].Actions = new string[7] { "Read my letters.", "Request a ticket.", "Boarding the Train.", "Exit", "Choose my Courses.", "Doing my phytology homeworks.","See my informations."};
                                 }
                                 switch (MyMethods.Choise(Students[StudentLoginNumber].Actions, $"welcome {Students[StudentLoginNumber].Name} {Students[StudentLoginNumber].Family}! What do You want?"))
                                 {
@@ -197,6 +197,9 @@ namespace Hogwartz_hoseynzadeh2
                                     case 6:
                                         Students[StudentLoginNumber].HomeworkProcess(StudentLoginNumber);
                                         MyMethods.DelayRerun(3);
+                                        break;
+                                    case 7:
+                                        Students[StudentLoginNumber].ShowInformation(Students[StudentLoginNumber]);
                                         break;
                                 }
                             }

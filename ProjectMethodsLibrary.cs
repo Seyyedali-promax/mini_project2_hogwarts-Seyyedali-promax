@@ -282,12 +282,16 @@ namespace Hogwartz_hoseynzadeh2
         //Delay after process
         public void DelayRerun (int Time)
         {
-            Console.Write("\n");
+           // Console.Write("\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             for (int i = 0; i<Time;i++)
             {
             Console.WriteLine($"You will be returned to the previous window after {Time-i} seconds.");
             System.Threading.Thread.Sleep(1000);
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                Console.Write(new string(' ',Console.WindowWidth));
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Clear();

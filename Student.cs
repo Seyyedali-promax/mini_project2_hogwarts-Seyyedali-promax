@@ -77,11 +77,13 @@ namespace Hogwartz_hoseynzadeh2
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nInvalid Account! Try again.");
+                Program.MyMethods.DelayRerun(3);
             }
             else if (Result == -1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nIncorrect password! Try again.");
+                Program.MyMethods.DelayRerun(3);
             }
             Console.ForegroundColor = ConsoleColor.White;
             return Result;
@@ -287,6 +289,18 @@ namespace Hogwartz_hoseynzadeh2
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"\nYou added to Hogwarts sucessfuly!\nWise hat: You are in the {Program.Students[Program.StudentIndex].HisGroup.Groupname} Group!\nSeverus snape: Welcome to Hogwartz! I hope you will be a good student.\nyour bedroom is: {Program.Students[Program.StudentIndex].DormOfStudent.GroupOfDorm.Groupname}{Program.Students[Program.StudentIndex].gender} Dorm,  {Program.Students[Program.StudentIndex].DormOfStudent.Floor} Floor,  {Program.Students[Program.StudentIndex].DormOfStudent.Room} Room, {Program.Students[Program.StudentIndex].DormOfStudent.Bed} Bed.");
             Program.StudentIndex++;
+        }
+        //Show inf
+        public void ShowInformation (Student Stu)
+        {
+            Console.WriteLine($"You are {Stu.Name} {Stu.Family}.");
+            Console.WriteLine($"Your fater name is  {Stu.FatherName}");
+            Console.WriteLine($"You were born in {Stu.BirthYear}.");
+            Console.WriteLine($"You are {Stu.Race} and in {Stu.HisGroup.Groupname} group.");
+            Console.WriteLine($"You have a cute {Stu.pet}.");
+            Console.WriteLine($"Your dorm stati code is {Stu.DormOfStudent.StaticCode}.");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

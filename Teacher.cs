@@ -41,11 +41,13 @@ namespace Hogwartz_hoseynzadeh2
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nInvalid Account! Try again.");
+                Program.MyMethods.DelayRerun(3);
             }
             else if (Result == -1)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nIncorrect password! Try again.");
+                Program.MyMethods.DelayRerun(3);
             }
             Console.ForegroundColor = ConsoleColor.White;
             return Result;
