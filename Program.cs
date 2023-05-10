@@ -19,11 +19,11 @@ namespace Hogwartz_hoseynzadeh2
         public static Group Hufflepuff = new Group();
         public static Group Ravenclaw = new Group();
         public static Group Slytherin = new Group();
-        public static List<Lesson> Cources;
+        public static List<Lesson> Cources = new List<Lesson>();
         public static int GryffindorMaleDormMembers = 0, HufflepuffMaleDormMembers = 0, RavenclawMaleDormMembers = 0, SlytherinMaleDormMembers = 0, GryffindorFemaleDormMembers = 0, HufflepuffFemaleDormMembers = 0, RavenclawFemaleDormMembers = 0, SlytherinFemaleDormMembers = 0;
 
         static void Main(string[] args)
-        { 
+        {
             //Definitions
             for (int i = 0; i < 1000; i++)
             {
@@ -58,13 +58,16 @@ namespace Hogwartz_hoseynzadeh2
                                 {
                                     case 1:
                                         Dombledour.LetterProcess();
+                                        MyMethods.DelayRerun(3);
                                         break;
 
                                     case 2:
                                         Dombledour.PlantProcess();
+                                        MyMethods.DelayRerun(3);
                                         break;
                                     case 3:
                                         Exit = true;
+                                        Console.Clear();
                                         break;
                                 }
                             }
@@ -75,12 +78,72 @@ namespace Hogwartz_hoseynzadeh2
                     //Teacher Actions
                     case 2:
                         int TeacherLoginNumber = Teachers[0].Login();
+                        if (TeacherLoginNumber != -1)
+                        {
+                            bool Exit = false;
+                            Console.Clear();
+                            while (!Exit)
+                            {
+                                        if (Teachers[TeacherLoginNumber].HaveCourse)
+                                        {
+                                            Teachers[TeacherLoginNumber].Actions = new string[3] { "Grading an student", "Define a new homework.", "Exit" };
+                                        }
+                                        else
+                                        {
+                                            Teachers[TeacherLoginNumber].Actions = new string[4] { "Grading an student", "Define a new homework.", "Exit", "Choose course." };
+                                        }
+                                switch (MyMethods.Choise(Teachers[TeacherLoginNumber].Actions, $"welcome {Teachers[TeacherLoginNumber].Name} {Teachers[TeacherLoginNumber].Family}! What do You want?"))
+                                {
+                                    case 1:
+                                        if (Teachers[TeacherLoginNumber].IndexesOfStudents.Count>0)
+                                        {
+                                            string[] StudentNames = new string[Teachers[TeacherLoginNumber].IndexesOfStudents.Count];
+                                            for (int i = 0; i < Teachers[TeacherLoginNumber].IndexesOfStudents.Count; i++)
+                                            {
+                                                StudentNames[i] = ((Students[Teachers[TeacherLoginNumber].IndexesOfStudents[i]].Name) + " " + Students[Teachers[TeacherLoginNumber].IndexesOfStudents[i]].Family);
+                                            }
+                                            int Grading = MyMethods.Choise(StudentNames, "Who?")-1;
+                                            int Grade = MyMethods.Grading("How much from 20?", 20);
+                                            if (Grade >= 10)
+                                            {
+                                                Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].Letters.Add($"You passed the {Teachers[TeacherLoginNumber].HisLessons.Name} Course!");
+                                                Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].PassedCourses[Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].PassedCourses.Length] = Teachers[TeacherLoginNumber].HisLesson;
+                                                Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].LessonSchedule[Teachers[TeacherLoginNumber].HisLessons.Whichday] = "";
+                                            }
+                                            else
+                                            {
+                                                Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].Letters.Add($"You failed the {Teachers[TeacherLoginNumber].HisLessons.Name} Course!");
+                                            }
+                                            Students[Teachers[TeacherLoginNumber].IndexesOfStudents[Grading]].LessonSchedule[Teachers[TeacherLoginNumber].HisLessons.Whichday] = "";
+                                            Teachers[TeacherLoginNumber].IndexesOfStudents.RemoveAt(Grading);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("\n\nYou have not any student!");
+                                        }
+                                        MyMethods.DelayRerun(3);
+                                        break;
+                                    case 2:
+                                        Teachers[TeacherLoginNumber].DefineHomework(TeacherLoginNumber);
+                                        MyMethods.DelayRerun(3);
+                                        break;
+                                    case 3:
+                                        Exit = true;
+                                        Console.Clear();
+                                        break;
+                                    case 4:
+                                        Teachers[TeacherLoginNumber].ChooseCourse(Teachers[TeacherLoginNumber],TeacherLoginNumber);
+                                        MyMethods.DelayRerun(3);
+                                        break;
+                                }
+                            }
+                        }
                         break;
-
+                        
 
                     //Student Actions
                     case 3:
-                        int StudentLoginNumber= Students[0].Login();
+                        int StudentLoginNumber = Students[0].Login();
                         if (StudentLoginNumber != -1)
                         {
                             bool Exit = false;
@@ -99,10 +162,12 @@ namespace Hogwartz_hoseynzadeh2
                                 {
                                     case 1:
                                         MyMethods.showList(Students[StudentLoginNumber].Letters, $"Hello! I.m your {Students[StudentLoginNumber].pet}. Your letters are:");
+                                        MyMethods.DelayRerun(Students[StudentLoginNumber].Letters.Count*4+1);
                                         Students[StudentLoginNumber].Letters.Clear();
                                         break;
                                     case 2:
                                         Students[StudentLoginNumber].LetterProcess(StudentLoginNumber);
+                                        MyMethods.DelayRerun(3);
                                         break;
                                     case 3:
                                         if (Students[StudentLoginNumber].Ticket)
@@ -110,7 +175,7 @@ namespace Hogwartz_hoseynzadeh2
                                             Students[StudentLoginNumber].Ticket = false;
                                             Students[StudentLoginNumber].IsHeInHogwartz = true;
                                             Console.ForegroundColor = ConsoleColor.Green;
-                                            Console.WriteLine("\n\nYou are in the train!");
+                                            Console.WriteLine("\n\nYou are in the train. You will be in destination soon!");
                                             Console.ForegroundColor = ConsoleColor.White;
                                         }
                                         else
@@ -119,15 +184,19 @@ namespace Hogwartz_hoseynzadeh2
                                             Console.WriteLine("\n\nYou haven't any ticket!");
                                             Console.ForegroundColor = ConsoleColor.White;
                                         }
+                                        MyMethods.DelayRerun(3);
                                         break;
                                     case 4:
                                         Exit = true;
+                                        Console.Clear();
                                         break;
                                     case 5:
-                                        ////////////////
+                                        Students[StudentLoginNumber].ChooseCourse(Students[StudentLoginNumber],StudentLoginNumber);
+                                        MyMethods.DelayRerun(3);
                                         break;
                                     case 6:
-                                        Students[StudentIndex].HomeworkProcess(StudentLoginNumber);
+                                        Students[StudentLoginNumber].HomeworkProcess(StudentLoginNumber);
+                                        MyMethods.DelayRerun(3);
                                         break;
                                 }
                             }
@@ -135,7 +204,8 @@ namespace Hogwartz_hoseynzadeh2
                         break;
                     //Add new student
                     case 4:
-                        //Students
+                        Students[0].NewStudent();
+                        MyMethods.DelayRerun(20);
                         break;
 
                 }

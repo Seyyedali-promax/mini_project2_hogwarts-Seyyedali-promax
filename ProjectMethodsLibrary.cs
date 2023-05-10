@@ -34,9 +34,9 @@ namespace Hogwartz_hoseynzadeh2
             while (1 == 1)
             {
                 Console.WriteLine("--------------------\n" + Ask + "\n--------------------");
-                for (int i = 1; i <= Choises.Length; i++)
+                for (int i =0; i < Choises.Length; i++)
                 {
-                    Console.WriteLine($"({i}) {Choises[i - 1]}");
+                    Console.WriteLine($"({i+1}) {Choises[i]}");
                 }
 
                 Choise = (Console.ReadLine());
@@ -79,7 +79,7 @@ namespace Hogwartz_hoseynzadeh2
                         Program.Teachers[Program.TeacherIndex].Name = Human[0];
 
                         Program.Teachers[Program.TeacherIndex].Family = Human[1];
-                        Program.Teachers[Program.TeacherIndex].BirthYear = Human[2];
+                        Program.Students[Program.StudentIndex].BirthYear = Convert.ToString(Human[2][0]) + Convert.ToString(Human[2][1]) + Convert.ToString(Human[2][2]) + Convert.ToString(Human[2][3]);
                         Program.Teachers[Program.TeacherIndex].gender = Human[3];
                         Program.Teachers[Program.TeacherIndex].FatherName = Human[4];
                         Program.Teachers[Program.TeacherIndex].Username = Human[5];
@@ -98,7 +98,7 @@ namespace Hogwartz_hoseynzadeh2
                         //Human vars
                         Program.Students[Program.StudentIndex].Name = Human[0];
                         Program.Students[Program.StudentIndex].Family = Human[1];
-                        Program.Students[Program.StudentIndex].BirthYear = Human[2];
+                        Program.Students[Program.StudentIndex].BirthYear = Convert.ToString( Human[2][0])+ Convert.ToString(Human[2][1])+ Convert.ToString(Human[2][2])+ Convert.ToString(Human[2][3]);
                         Program.Students[Program.StudentIndex].gender = Human[3];
                         Program.Students[Program.StudentIndex].FatherName = Human[4];
                         Program.Students[Program.StudentIndex].Username = Human[5];
@@ -110,6 +110,8 @@ namespace Hogwartz_hoseynzadeh2
                         Program.Students[Program.StudentIndex].pet = Program.MyMethods.PetDeterminator(Program.Students[Program.StudentIndex]);
                         Program.Students[Program.StudentIndex].HaveBaggage = true;
                         Program.Students[Program.StudentIndex].DormOfStudent = DormDeterminator(Program.Students[Program.StudentIndex]);
+                        //student vars
+                        Program.Students[Program.StudentIndex].Ticket = true;
                         Program.StudentIndex++;
                     }
                 }
@@ -244,6 +246,51 @@ namespace Hogwartz_hoseynzadeh2
             Result.StaticCode = Result.Gender * 1000 + Result.Floor * 100 + Result.Room * 10 + Result.Bed * 1;
             return Result;
         }
-
+        //Grading
+        public int Grading(string Ask,int max)
+        {
+            string Choise;
+            int ChoiseInt = 0;
+            while (1 == 1)
+            {
+                Console.WriteLine("--------------------\n" + Ask + "\n--------------------");
+                Choise = (Console.ReadLine());
+                try
+                {
+                    ChoiseInt = Convert.ToInt32(Choise);
+                }
+                catch
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                if (ChoiseInt > max || ChoiseInt < 0)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error! Please enter a valid number.\n");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    continue;
+                }
+                break;
+            }
+            return ChoiseInt;
+        }
+        //Delay after process
+        public void DelayRerun (int Time)
+        {
+            Console.Write("\n");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            for (int i = 0; i<Time;i++)
+            {
+            Console.WriteLine($"You will be returned to the previous window after {Time-i} seconds.");
+            System.Threading.Thread.Sleep(1000);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+        }
     }
 }

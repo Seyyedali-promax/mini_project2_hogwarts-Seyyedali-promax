@@ -10,9 +10,10 @@ namespace Hogwartz_hoseynzadeh2
     {
         // 0 to 4, saturday to wednesday
         public int Whichday;
-        public int NumberOfClassmates  =0;
+        public int NumberOfClassmates  ;
         //public int Capacity;
         public string Name;
-        public Teacher TeaacherOfCource = new Teacher();
+        public string TeaacherOfCource;
+        public int TeacherNumber;
     }
 }

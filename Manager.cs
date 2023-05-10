@@ -130,11 +130,11 @@ namespace Hogwartz_hoseynzadeh2
                     switch(ChoiseInt)
                     {
                         case 1:
-                            Program.Students[Program.Dombledour.StudentOfDemands[i]].Letters.Add("You have a ticket now!");
+                            Program.Students[Program.Dombledour.StudentOfDemands[i]].Letters.Add("Dombledour: You have a ticket now!");
                             Program.Students[Program.Dombledour.StudentOfDemands[i]].Ticket = true;
                             break;
                         case 2:
-                            Program.Students[Program.Dombledour.StudentOfDemands[i]].Letters.Add("Your request about ticket rejected.");
+                            Program.Students[Program.Dombledour.StudentOfDemands[i]].Letters.Add("Dombledour: Your request about ticket rejected.");
                             break;
                     }
                 }
